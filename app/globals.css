@@ -1,26 +1,236 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* stylelint-enable at-rule-no-unknown */
+
+/* === Наш ручной сброс === */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* === Определяем CSS-переменные === */
+:root {
+  --color-brand-dark: #1e1a2a;
+  --color-brand-blue: #00314a;
+  --color-brand-yellow: #daa520;
+  --color-brand-terracotta: #c75c45;
+  --color-brand-red: #a83c31;
+  --color-brand-maroon: #5a2b2a;
+  --color-brand-light: #f0e6d2;
+}
+
+/* === Применяем фоновый цвет к body === */
+body {
+  background-color: var(--color-brand-blue);
+}
+
+/* === Кастомные классы === */
+@layer components {
+
+  /* --- Кнопки --- */
+  .btn-primary {
+    @apply inline-block bg-brand-yellow text-brand-dark font-bold py-3 px-6 rounded-lg shadow-lg transition-transform duration-300 hover:scale-105;
+  }
+  .btn-secondary {
+    @apply inline-block bg-brand-terracotta text-white font-bold py-3 px-6 rounded-lg shadow-lg transition-transform duration-300 hover:scale-105;
+  }
+
+  /* --- Текст --- */
+  .heading-hero {
+    @apply text-brand-light text-4xl md:text-5xl font-extrabold mb-4;
+  }
+  .subheading-hero {
+    @apply text-brand-light text-lg md:text-xl opacity-90 mb-10; 
+  }
+
+  /* --- Карточки Услуг --- */
+  .service-card {
+    @apply bg-brand-dark/70 border border-brand-light/10 rounded-lg p-8 text-left h-full transition-all duration-300 hover:-translate-y-1 hover:border-brand-light/30;
+  }
+  .card-title {
+    @apply text-brand-light text-2xl font-bold mb-4;
+  }
+  .card-text {
+    @apply text-brand-light/80 mb-6;
+  }
+
+  /* --- Секции --- */
+  .section-title {
+    @apply text-brand-light text-3xl font-bold text-center mb-8;
+  }
+
+  /* --- Портфолио --- */
+  .portfolio-filter-btn {
+    @apply bg-transparent text-brand-light/60 font-medium py-2 px-4 rounded-md border border-brand-light transition-all duration-300 hover:opacity-100 hover:bg-brand-light/10;
+  }
+  .portfolio-filter-btn.active {
+    @apply bg-brand-yellow text-brand-dark border-brand-yellow opacity-100;
+  }
+
+  .portfolio-item {
+    @apply bg-brand-dark/70 rounded-lg overflow-hidden border border-brand-light/10;
+  }
+  .portfolio-image-wrapper {
+    @apply relative w-full aspect-square; 
+  }
+  .portfolio-image-wrapper img {
+    @apply absolute top-0 left-0 w-full h-full object-cover;
+  }
+  .portfolio-image-label {
+    @apply absolute top-2 left-2 bg-black/70 text-white py-1 px-2 rounded-md text-xs font-bold;
+  }
+  .portfolio-item-title {
+    @apply text-brand-light font-semibold pt-4 px-5;
+  }
+  .portfolio-item-description {
+    @apply text-brand-light/80 text-sm pb-5 px-5;
+  }
+
+  /* --- Секция "Обо мне" --- */
+  .about-section {
+    @apply bg-brand-dark/70 w-full py-16 px-6;
+  }
+  .about-content-wrapper {
+    @apply max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:items-center;
+  }
+  .about-image {
+    @apply w-full h-96 object-cover rounded-lg border-2 border-brand-yellow;
+  }
+  .about-text-content {
+    @apply text-left;
+  }
+  .about-text-content .section-title {
+    @apply text-left text-3xl mb-6;
+  }
+  .about-text-content p {
+    @apply text-brand-light/80 text-base leading-7 mb-6;
+  }
+
+  /* --- Секция CTA --- */
+  .cta-section {
+    @apply w-full py-16 md:pb-20 px-6 text-center;
+  }
+  .cta-content-wrapper {
+    @apply max-w-2xl mx-auto;
+  }
+  .cta-text {
+    @apply text-brand-light/90 text-lg leading-7 mb-8;
+  }
+
+  /* --- Футер --- */
+  .footer-wrapper {
+    @apply bg-brand-dark py-8 px-6 border-t border-brand-light/10;
+  }
+  .footer-content {
+    @apply max-w-6xl mx-auto flex flex-col-reverse md:flex-row items-center md:justify-between gap-6 text-center md:text-left;
+  }
+  .footer-copyright {
+    @apply text-brand-light/70 text-sm;
+  }
+  .footer-links {
+    @apply flex flex-wrap justify-center gap-6 text-sm font-medium;
+  }
+  .footer-links a {
+    @apply text-brand-light/80 transition-all duration-300 hover:opacity-100 hover:text-brand-yellow;
+  }
+
+  /* --- Прочие страницы --- */
+  .page-container {
+    @apply w-full max-w-2xl text-center py-8 md:pb-16 px-6;
+  }
+  .page-title {
+    @apply text-brand-light text-3xl font-bold text-center mb-4;
+  }
+  .page-description {
+    @apply text-brand-light/90 text-lg leading-7 mb-8;
+  }
+  .form-input {
+    @apply w-full bg-brand-dark/70 border border-brand-light/20 text-brand-light rounded-md py-3 px-4 text-base transition-all duration-300;
+  }
+  .form-input::placeholder {
+    @apply text-brand-light/40;
+  }
+  .form-input:focus {
+    @apply outline-none border-brand-yellow ring-4 ring-brand-yellow/30; 
+  }
+  .contact-links {
+    @apply mt-12 mb-8;
+  }
+  .contact-links p {
+    @apply text-brand-light/80 mb-4;
+  }
+  .contact-links-grid {
+    @apply flex flex-wrap justify-center gap-4;
+  }
+  .social-btn {
+    @apply bg-brand-terracotta text-white font-semibold py-2.5 px-5 rounded-lg transition-all duration-300 inline-flex items-center gap-2 hover:opacity-90 hover:scale-103;
+  }
+
+  /* --- Страница "Услуги" --- */
+  .service-section {
+    @apply w-full text-left p-6 md:p-10 mb-8 bg-brand-dark/70 border border-brand-light/10 rounded-lg;
+  }
+  .service-section h2 {
+    @apply text-brand-light text-3xl font-bold mb-2 border-l-4 border-brand-yellow pl-4;
+  }
+  .service-section p {
+    @apply text-brand-light/80 mb-6 leading-7;
+  }
+  .service-list {
+    @apply list-none p-0 mb-6 grid grid-cols-1 sm:grid-cols-2 gap-3;
+  }
+  .service-list li {
+    @apply text-brand-light/90 flex items-start;
+  }
+  .service-list li::before {
+    content: '✓';
+    @apply text-brand-yellow font-black mr-3 mt-0.5 flex-shrink-0;
+  }
+  .process-steps h3 {
+    @apply text-brand-light text-xl font-semibold mb-4 mt-6;
+  }
+  
+  /* --- Хедер --- */
+  .header-wrapper {
+    @apply sticky top-0 z-50 w-full bg-brand-dark/85 backdrop-blur-DEFAULT border-b border-brand-light/10;
+  }
+  .header-content {
+    @apply max-w-6xl mx-auto flex items-center justify-between py-4 px-6;
+  }
+  .header-logo {
+    @apply text-2xl font-bold text-brand-yellow no-underline;
+  }
+  .header-nav-desktop {
+    @apply hidden md:flex items-center gap-6;
+  }
+  .header-nav-link {
+    @apply text-sm font-semibold text-brand-light/90 no-underline transition-all duration-300 hover:opacity-100 hover:text-brand-yellow;
+  }
+  .mobile-menu-button {
+    @apply block md:hidden text-brand-light p-2 rounded-md border border-transparent hover:bg-brand-light/10 focus:outline-none focus:border-brand-yellow;
+  }
+  .mobile-menu-button svg {
+    @apply w-6 h-6;
+  }
+  .mobile-menu-overlay {
+    @apply hidden absolute top-full left-0 right-0 w-full bg-brand-dark p-6 border-b border-brand-light/10 shadow-xl;
+  }
+  .mobile-menu-overlay.open {
+    @apply block;
+  }
+  .mobile-nav-link {
+    @apply block text-lg font-semibold text-brand-light py-3 border-b border-brand-light/10 no-underline hover:text-brand-yellow;
+  }
+  .mobile-nav-link:last-child {
+    @apply border-b-0;
+  }
 }
