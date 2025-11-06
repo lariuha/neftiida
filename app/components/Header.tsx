@@ -21,7 +21,7 @@ export default function Header() {
         
         {/* --- Логотип --- */}
         <Link href="/" className="header-logo">
-          Neftiida
+          N&N
         </Link>
 
         {/* --- Навигация (Десктоп) --- */}

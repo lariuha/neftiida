@@ -1,10 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* app/globals.css */
 
-/* stylelint-enable at-rule-no-unknown */
-
-/* === Наш ручной сброс === */
+/* === НАШ РУЧНОЙ СБРОС (вместо @tailwind base) === */
 *,
 *::before,
 *::after {
@@ -13,11 +9,12 @@
 
 html,
 body {
-  margin: 0;
-  padding: 0;
+  margin: 0; /* Убираем дефолтные отступы */
+  padding: 0; /* На всякий случай */
 }
+/* === Конец ручного сброса === */
 
-/* === Определяем CSS-переменные === */
+/* 1. Определяем наши CSS переменные */
 :root {
   --color-brand-dark: #1e1a2a;
   --color-brand-blue: #00314a;
@@ -28,209 +25,600 @@ body {
   --color-brand-light: #f0e6d2;
 }
 
-/* === Применяем фоновый цвет к body === */
+/* 3. Подключаем Tailwind (базовые стили - сброс и т.д.) */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 2. Применяем наш фоновый цвет к body */
 body {
   background-color: var(--color-brand-blue);
 }
 
-/* === Кастомные классы === */
-@layer components {
 
-  /* --- Кнопки --- */
-  .btn-primary {
-    @apply inline-block bg-brand-yellow text-brand-dark font-bold py-3 px-6 rounded-lg shadow-lg transition-transform duration-300 hover:scale-105;
-  }
-  .btn-secondary {
-    @apply inline-block bg-brand-terracotta text-white font-bold py-3 px-6 rounded-lg shadow-lg transition-transform duration-300 hover:scale-105;
-  }
+/* 4. НАШИ КЛАССЫ НА ЧИСТОМ CSS (ВМЕСТО @apply) */
 
-  /* --- Текст --- */
+/* --- Кнопки --- */
+.btn-primary {
+  background-color: var(--color-brand-yellow);
+  color: var(--color-brand-dark);
+  font-weight: 700; /* (font-bold) */
+  padding-top: 0.75rem; /* (py-3) */
+  padding-bottom: 0.75rem; /* (py-3) */
+  padding-left: 1.5rem; /* (px-6) */
+  padding-right: 1.5rem; /* (px-6) */
+  border-radius: 0.5rem; /* (rounded-lg) */
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /* (shadow-lg) */
+  transition-property: transform; /* (transition-transform) */
+  transition-duration: 300ms; /* (duration-300) */
+  display: inline-block; /* (для тега <a>) */
+}
+.btn-primary:hover {
+  transform: scale(1.05); /* (hover:scale-105) */
+}
+
+.btn-secondary {
+  background-color: var(--color-brand-terracotta);
+  color: white;
+  font-weight: 700; /* (font-bold) */
+  padding-top: 0.75rem; /* (py-3) */
+  padding-bottom: 0.75rem; /* (py-3) */
+  padding-left: 1.5rem; /* (px-6) */
+  padding-right: 1.5rem; /* (px-6) */
+  border-radius: 0.5rem; /* (rounded-lg) */
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /* (shadow-lg) */
+  transition-property: transform; /* (transition-transform) */
+  transition-duration: 300ms; /* (duration-300) */
+  display: inline-block; /* (для тега <a>) */
+}
+.btn-secondary:hover {
+  transform: scale(1.05); /* (hover:scale-105) */
+}
+
+/* --- Текст (для темного фона) --- */
+.heading-hero {
+  color: var(--color-brand-light);
+  font-size: 2.25rem; /* (text-4xl) */
+  line-height: 2.5rem; /* (text-4xl) */
+  font-weight: 800; /* (font-extrabold) */
+  margin-bottom: 1rem; /* (mb-4) */
+}
+@media (min-width: 768px) { /* (md:) */
   .heading-hero {
-    @apply text-brand-light text-4xl md:text-5xl font-extrabold mb-4;
+    font-size: 3rem; /* (md:text-5xl) */
+    line-height: 1; /* (md:text-5xl) */
   }
+}
+
+.subheading-hero {
+  color: var(--color-brand-light);
+  font-size: 1.125rem; /* (text-lg) */
+  line-height: 1.75rem; /* (text-lg) */
+  opacity: 0.9; /* (opacity-90) */
+  margin-bottom: 2.5rem; /* (mb-10 из page.tsx) */
+}
+@media (min-width: 768px) { /* (md:) */
   .subheading-hero {
-    @apply text-brand-light text-lg md:text-xl opacity-90 mb-10; 
+    font-size: 1.25rem; /* (md:text-xl) */
+    line-height: 1.75rem; /* (md:text-xl) */
   }
 
-  /* --- Карточки Услуг --- */
+}  
+
   .service-card {
-    @apply bg-brand-dark/70 border border-brand-light/10 rounded-lg p-8 text-left h-full transition-all duration-300 hover:-translate-y-1 hover:border-brand-light/30;
+    /* Мы используем наш 'brand-dark', но полупрозрачный */
+    background-color: rgba(30, 26, 42, 0.7); /* 70%-прозрачный brand-dark */
+    border-radius: 0.5rem; /* (rounded-lg) */
+    padding: 2rem; /* (p-8) */
+    border: 1px solid rgba(240, 230, 210, 0.1); /* (border brand-light/10) */
+    transition-property: all;
+    transition-duration: 300ms;
+    text-align: left;
+    height: 100%; /* (h-full) - чтобы карточки были одной высоты */
   }
+  .service-card:hover {
+    transform: translateY(-5px); /* (hover:-translate-y-1) */
+    border-color: rgba(240, 230, 210, 0.3); /* (hover:border brand-light/30) */
+  }
+
+  /* Заголовок в карточке */
   .card-title {
-    @apply text-brand-light text-2xl font-bold mb-4;
+    color: var(--color-brand-light); /* (text-brand-light) */
+    font-size: 1.5rem; /* (text-2xl) */
+    line-height: 2rem; /* (text-2xl) */
+    font-weight: 700; /* (font-bold) */
+    margin-bottom: 1rem; /* (mb-4) */
   }
+
+  /* Текст в карточке */
   .card-text {
-    @apply text-brand-light/80 mb-6;
+    color: var(--color-brand-light);
+    opacity: 0.8; /* (opacity-80) */
+    margin-bottom: 1.5rem; /* (mb-6) */
   }
 
-  /* --- Секции --- */
+
   .section-title {
-    @apply text-brand-light text-3xl font-bold text-center mb-8;
-  }
+  color: var(--color-brand-light);
+  font-size: 2.25rem; /* (text-3xl) */
+  font-weight: 700; /* (font-bold) */
+  text-align: center;
+  margin-bottom: 2rem; /* (mb-8) */
+}
 
-  /* --- Портфолио --- */
-  .portfolio-filter-btn {
-    @apply bg-transparent text-brand-light/60 font-medium py-2 px-4 rounded-md border border-brand-light transition-all duration-300 hover:opacity-100 hover:bg-brand-light/10;
-  }
-  .portfolio-filter-btn.active {
-    @apply bg-brand-yellow text-brand-dark border-brand-yellow opacity-100;
-  }
+/* Кнопки-фильтры в портфолио */
+.portfolio-filter-btn {
+  background-color: transparent;
+  color: var(--color-brand-light);
+  opacity: 0.6;
+  font-weight: 500; /* (font-medium) */
+  padding: 0.5rem 1rem; /* (py-2 px-4) */
+  border-radius: 0.375rem; /* (rounded-md) */
+  border: 1px solid var(--color-brand-light);
+  transition-duration: 300ms;
+}
+.portfolio-filter-btn:hover {
+  opacity: 1;
+  background-color: rgba(240, 230, 210, 0.1); /* (brand-light/10) */
+}
+/* Активная кнопка-фильтр (мы будем использовать ее позже с React) */
+.portfolio-filter-btn.active {
+  background-color: var(--color-brand-yellow);
+  color: var(--color-brand-dark);
+  border-color: var(--color-brand-yellow);
+  opacity: 1;
+}
 
-  .portfolio-item {
-    @apply bg-brand-dark/70 rounded-lg overflow-hidden border border-brand-light/10;
-  }
-  .portfolio-image-wrapper {
-    @apply relative w-full aspect-square; 
-  }
-  .portfolio-image-wrapper img {
-    @apply absolute top-0 left-0 w-full h-full object-cover;
-  }
-  .portfolio-image-label {
-    @apply absolute top-2 left-2 bg-black/70 text-white py-1 px-2 rounded-md text-xs font-bold;
-  }
-  .portfolio-item-title {
-    @apply text-brand-light font-semibold pt-4 px-5;
-  }
-  .portfolio-item-description {
-    @apply text-brand-light/80 text-sm pb-5 px-5;
-  }
+/* Карточка портфолио */
+.portfolio-item {
+  background-color: rgba(30, 26, 42, 0.7); /* (brand-dark/70) */
+  border-radius: 0.5rem; /* (rounded-lg) */
+  overflow: hidden; /* (чтобы картинка не вылезала) */
+  border: 1px solid rgba(240, 230, 210, 0.1); /* (border brand-light/10) */
+}
 
-  /* --- Секция "Обо мне" --- */
-  .about-section {
-    @apply bg-brand-dark/70 w-full py-16 px-6;
-  }
+/* Обертка для картинок "До/После" */
+.portfolio-image-wrapper {
+  position: relative;
+  width: 100%;
+  /* Мы делаем картинки квадратными (aspect-square) */
+  padding-top: 100%; /* 1:1 Aspect Ratio */
+}
+.portfolio-image-wrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* (Картинка заполнит блок, обрезаясь) */
+}
+
+/* Лейбл "До" / "После" */
+.portfolio-image-label {
+  position: absolute;
+  top: 0.5rem; /* (top-2) */
+  left: 0.5rem; /* (left-2) */
+  background-color: rgba(0, 0, 0, 0.7); /* (bg-black/70) */
+  color: white;
+  padding: 0.25rem 0.5rem; /* (py-1 px-2) */
+  border-radius: 0.375rem; /* (rounded-md) */
+  font-size: 0.75rem; /* (text-xs) */
+  font-weight: 700;
+}
+
+/* Описание под карточкой */
+.portfolio-item-title {
+  color: var(--color-brand-light);
+  font-weight: 600; /* (font-semibold) */
+  padding-top: 1rem; /* (pt-4) */
+  padding-left: 1.25rem; /* (px-5) */
+  padding-right: 1.25rem; /* (px-5) */
+}
+.portfolio-item-description {
+  color: var(--color-brand-light);
+  opacity: 0.8;
+  font-size: 0.875rem; /* (text-sm) */
+  padding-bottom: 1.25rem; /* (pb-5) */
+  padding-left: 1.25rem; /* (px-5) */
+  padding-right: 1.25rem; /* (px-5) */
+}
+
+.about-section {
+  background-color: rgba(30, 26, 42, 0.7); /* (brand-dark/70) */
+  width: 100%;
+  padding-top: 4rem;    /* (py-16) */
+  padding-bottom: 4rem; /* (py-16) */
+  padding-left: 1.5rem;  /* (px-6) */
+  padding-right: 1.5rem; /* (px-6) */
+}
+
+/* Контейнер для фото и текста */
+.about-content-wrapper {
+  max-width: 64rem; /* (max-w-5xl) */
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  grid-template-columns: 1fr; /* 1 колонка на мобильных */
+  gap: 2rem; /* (gap-8) */
+}
+@media (min-width: 768px) { /* (md:) */
   .about-content-wrapper {
-    @apply max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:items-center;
+    grid-template-columns: repeat(2, 1fr); /* 2 колонки на десктопе */
+    align-items: center; /* (items-center) */
   }
-  .about-image {
-    @apply w-full h-96 object-cover rounded-lg border-2 border-brand-yellow;
-  }
-  .about-text-content {
-    @apply text-left;
-  }
-  .about-text-content .section-title {
-    @apply text-left text-3xl mb-6;
-  }
-  .about-text-content p {
-    @apply text-brand-light/80 text-base leading-7 mb-6;
-  }
+}
 
-  /* --- Секция CTA --- */
-  .cta-section {
-    @apply w-full py-16 md:pb-20 px-6 text-center;
-  }
-  .cta-content-wrapper {
-    @apply max-w-2xl mx-auto;
-  }
-  .cta-text {
-    @apply text-brand-light/90 text-lg leading-7 mb-8;
-  }
+/* Фотография мастера */
+.about-image {
+  width: 100%;
+  height: 24rem; /* (h-96) */
+  object-fit: cover;
+  border-radius: 0.5rem; /* (rounded-lg) */
+  border: 2px solid var(--color-brand-yellow); /* Рамка в цвет акцента */
+}
 
-  /* --- Футер --- */
-  .footer-wrapper {
-    @apply bg-brand-dark py-8 px-6 border-t border-brand-light/10;
-  }
+/* Текстовый контент "Обо мне" */
+.about-text-content {
+  text-align: left;
+}
+
+.about-text-content .section-title {
+  text-align: left; /* Переопределяем .section-title, который был по центру */
+  font-size: 2.25rem; /* (text-3xl) */
+  margin-bottom: 1.5rem; /* (mb-6) */
+}
+
+.about-text-content p {
+  color: var(--color-brand-light);
+  opacity: 0.8;
+  font-size: 1rem; /* (text-base) */
+  line-height: 1.75; /* (leading-7) */
+  margin-bottom: 1.5rem; /* (mb-6) */
+}
+
+.cta-section {
+  width: 100%;
+  padding-top: 4rem;    /* (py-16) */
+  padding-bottom: 5rem; /* (pb-20) */
+  padding-left: 1.5rem;  /* (px-6) */
+  padding-right: 1.5rem; /* (px-6) */
+  text-align: center; /* (text-center) */
+}
+
+/* Обертка для контента, чтобы ограничить ширину */
+.cta-content-wrapper {
+  max-width: 42rem; /* (max-w-2xl) */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Подзаголовок в CTA */
+.cta-text {
+  color: var(--color-brand-light);
+  opacity: 0.9;
+  font-size: 1.125rem; /* (text-lg) */
+  line-height: 1.75;  /* (leading-7) */
+  margin-bottom: 2rem; /* (mb-8) */
+}
+
+.footer-wrapper {
+  background-color: var(--color-brand-dark); /* Наш самый темный фон */
+  padding: 2rem 1.5rem; /* (py-8 px-6) */
+  /* 'margin-top: auto' не нужен, layout сделает это */
+  border-top: 1px solid rgba(240, 230, 210, 0.1); /* (border brand-light/10) */
+}
+
+.footer-content {
+  max-width: 72rem; /* (max-w-6xl) */
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  /* Ссылки будут СВЕРХУ на мобильных */
+  flex-direction: column-reverse; 
+  align-items: center;
+  gap: 1.5rem; /* (gap-6) */
+  text-align: center;
+}
+@media (min-width: 768px) { /* (md:) */
   .footer-content {
-    @apply max-w-6xl mx-auto flex flex-col-reverse md:flex-row items-center md:justify-between gap-6 text-center md:text-left;
+    flex-direction: row; /* (md:flex-row) */
+    justify-content: space-between; /* (md:justify-between) */
+    text-align: left;
   }
-  .footer-copyright {
-    @apply text-brand-light/70 text-sm;
-  }
-  .footer-links {
-    @apply flex flex-wrap justify-center gap-6 text-sm font-medium;
-  }
-  .footer-links a {
-    @apply text-brand-light/80 transition-all duration-300 hover:opacity-100 hover:text-brand-yellow;
-  }
+}
 
-  /* --- Прочие страницы --- */
-  .page-container {
-    @apply w-full max-w-2xl text-center py-8 md:pb-16 px-6;
-  }
-  .page-title {
-    @apply text-brand-light text-3xl font-bold text-center mb-4;
-  }
-  .page-description {
-    @apply text-brand-light/90 text-lg leading-7 mb-8;
-  }
-  .form-input {
-    @apply w-full bg-brand-dark/70 border border-brand-light/20 text-brand-light rounded-md py-3 px-4 text-base transition-all duration-300;
-  }
-  .form-input::placeholder {
-    @apply text-brand-light/40;
-  }
-  .form-input:focus {
-    @apply outline-none border-brand-yellow ring-4 ring-brand-yellow/30; 
-  }
-  .contact-links {
-    @apply mt-12 mb-8;
-  }
-  .contact-links p {
-    @apply text-brand-light/80 mb-4;
-  }
-  .contact-links-grid {
-    @apply flex flex-wrap justify-center gap-4;
-  }
-  .social-btn {
-    @apply bg-brand-terracotta text-white font-semibold py-2.5 px-5 rounded-lg transition-all duration-300 inline-flex items-center gap-2 hover:opacity-90 hover:scale-103;
-  }
+.footer-copyright {
+  color: var(--color-brand-light);
+  font-size: 0.875rem; /* (text-sm) */
+  opacity: 0.7;
+}
 
-  /* --- Страница "Услуги" --- */
-  .service-section {
-    @apply w-full text-left p-6 md:p-10 mb-8 bg-brand-dark/70 border border-brand-light/10 rounded-lg;
-  }
-  .service-section h2 {
-    @apply text-brand-light text-3xl font-bold mb-2 border-l-4 border-brand-yellow pl-4;
-  }
-  .service-section p {
-    @apply text-brand-light/80 mb-6 leading-7;
-  }
-  .service-list {
-    @apply list-none p-0 mb-6 grid grid-cols-1 sm:grid-cols-2 gap-3;
-  }
-  .service-list li {
-    @apply text-brand-light/90 flex items-start;
-  }
-  .service-list li::before {
-    content: '✓';
-    @apply text-brand-yellow font-black mr-3 mt-0.5 flex-shrink-0;
-  }
-  .process-steps h3 {
-    @apply text-brand-light text-xl font-semibold mb-4 mt-6;
-  }
+.footer-links {
+  display: flex;
+  flex-wrap: wrap; /* (flex-wrap) */
+  justify-content: center;
+  gap: 1.5rem; /* (gap-x-6) */
+  font-size: 0.875rem; /* (text-sm) */
+  font-weight: 500; /* (font-medium) */
+}
+
+.footer-links a {
+  color: var(--color-brand-light);
+  opacity: 0.8;
+  transition-duration: 300ms;
+}
+.footer-links a:hover {
+  opacity: 1;
+  color: var(--color-brand-yellow);
+}
+
+.page-container {
+  width: 100%;
+  max-width: 42rem; /* (max-w-2xl) */
+  padding: 2rem 1.5rem 4rem; /* (py-8 px-6 pb-16) */
+  text-align: center;
+}
+
+/* Заголовок страницы (как .section-title, но чуть меньше отступ) */
+.page-title {
+  color: var(--color-brand-light);
+  font-size: 2.25rem; /* (text-3xl) */
+  font-weight: 700; /* (font-bold) */
+  text-align: center;
+  margin-bottom: 1rem; /* (mb-4) */
+}
+
+/* Описание под заголовком */
+.page-description {
+  color: var(--color-brand-light);
+  opacity: 0.9;
+  font-size: 1.125rem; /* (text-lg) */
+  line-height: 1.75;
+  margin-bottom: 2rem; /* (mb-8) */
+}
+
+/* Стили для полей ввода (input, textarea) */
+.form-input {
+  width: 100%;
+  background-color: rgba(30, 26, 42, 0.7); /* (bg-brand-dark/70) */
+  border: 1px solid rgba(240, 230, 210, 0.2); /* (border-brand-light/20) */
+  color: var(--color-brand-light);
+  border-radius: 0.375rem; /* (rounded-md) */
+  padding: 0.75rem 1rem; /* (py-3 px-4) */
+  font-size: 1rem;
+  transition-duration: 300ms;
+}
+.form-input::placeholder {
+  color: var(--color-brand-light);
+  opacity: 0.4;
+}
+.form-input:focus {
+  outline: none;
+  border-color: var(--color-brand-yellow); /* (focus:border-brand-yellow) */
+  box-shadow: 0 0 0 3px rgba(218, 165, 32, 0.3); /* (focus:ring) */
+}
+
+/* Обертка для прямых контактов (Соцсети) */
+.contact-links {
+  margin-top: 3rem; /* (mt-12) */
+  margin-bottom: 2rem; /* (mb-8) */
+}
+.contact-links p {
+  color: var(--color-brand-light);
+  opacity: 0.8;
+  margin-bottom: 1rem;
+}
+.contact-links-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem; /* (gap-4) */
+}
+
+/* Кнопка соцсети */
+.social-btn {
+  background-color: var(--color-brand-terracotta); /* (bg-brand-terracotta) */
+  color: white;
+  font-weight: 600; /* (font-semibold) */
+  padding: 0.625rem 1.25rem; /* (py-2.5 px-5) */
+  border-radius: 0.5rem; /* (rounded-lg) */
+  transition-duration: 300ms;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem; /* (gap-2) */
+}
+.social-btn:hover {
+  opacity: 0.9;
+  transform: scale(1.03);
+}
+
+.service-section {
+  width: 100%;
+  text-align: left;
+  padding: 2.5rem 1.5rem; /* (py-10 px-6) */
+  margin-bottom: 2rem; /* (mb-8) */
+  background-color: rgba(30, 26, 42, 0.7); /* (bg-brand-dark/70) */
+  border: 1px solid rgba(240, 230, 210, 0.1); /* (border brand-light/10) */
+  border-radius: 0.5rem; /* (rounded-lg) */
+}
+
+.service-section h2 {
+  color: var(--color-brand-light);
+  font-size: 1.875rem; /* (text-3xl) */
+  font-weight: 700;
+  margin-bottom: 0.5rem; /* (mb-2) */
+  border-left: 4px solid var(--color-brand-yellow);
+  padding-left: 1rem; /* (pl-4) */
+}
+
+.service-section p {
+  color: var(--color-brand-light);
+  opacity: 0.8;
+  margin-bottom: 1.5rem; /* (mb-6) */
+  line-height: 1.75;
+}
+
+/* Список услуг (галочками) */
+.service-list {
+  list-style-type: none; /* Убираем маркеры */
+  padding: 0;
+  margin-bottom: 1.5rem; /* (mb-6) */
   
-  /* --- Хедер --- */
-  .header-wrapper {
-    @apply sticky top-0 z-50 w-full bg-brand-dark/85 backdrop-blur-DEFAULT border-b border-brand-light/10;
+  display: grid;
+  grid-template-columns: 1fr; /* 1 колонка */
+  gap: 0.75rem; /* (gap-3) */
+}
+@media (min-width: 640px) { /* (sm:) */
+  .service-list {
+    grid-template-columns: repeat(2, 1fr); /* 2 колонки */
   }
-  .header-content {
-    @apply max-w-6xl mx-auto flex items-center justify-between py-4 px-6;
-  }
-  .header-logo {
-    @apply text-2xl font-bold text-brand-yellow no-underline;
-  }
+}
+
+.service-list li {
+  color: var(--color-brand-light);
+  opacity: 0.9;
+  display: flex;
+  align-items: flex-start;
+}
+/* Псевдо-элемент "галочка" (используем наш акцентный цвет) */
+.service-list li::before {
+  content: '✓'; /* Галочка */
+  color: var(--color-brand-yellow);
+  font-weight: 900;
+  margin-right: 0.75rem; /* (mr-3) */
+  margin-top: 0.125rem; /* (mt-0.5) */
+  flex-shrink: 0; /* (flex-shrink-0) */
+}
+
+/* Блок "Как это работает" */
+.process-steps h3 {
+  color: var(--color-brand-light);
+  font-size: 1.25rem; /* (text-xl) */
+  font-weight: 600;
+  margin-bottom: 1rem; /* (mb-4) */
+  margin-top: 1.5rem; /* (mt-6) */
+}
+
+.header-wrapper {
+  position: sticky; /* "Прилипание" */
+  top: 0;
+  z-index: 50; /* (Чтобы он был поверх всего) */
+  width: 100%;
+  
+  /* Эффект "матового стекла" (бэкграунд с прозрачностью + блюр) */
+  background-color: rgba(30, 26, 42, 0.85); /* (brand-dark/85) */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px); /* (Для Safari) */
+  
+  border-bottom: 1px solid rgba(240, 230, 210, 0.1); /* (border brand-light/10) */
+}
+
+.header-content {
+  max-width: 72rem; /* (max-w-6xl) */
+  margin-left: auto;
+  margin-right: auto;
+  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  padding: 1rem 1.5rem; /* (py-4 px-6) */
+}
+
+/* Логотип (название сайта) */
+.header-logo {
+  font-size: 1.5rem; /* (text-2xl) */
+  font-weight: 700; /* (font-bold) */
+  color: var(--color-brand-yellow); /* (text-brand-yellow) */
+  text-decoration: none;
+}
+
+/* Навигация для десктопа (скрыта на мобильных) */
+.header-nav-desktop {
+  display: none; /* (hidden) */
+}
+@media (min-width: 768px) { /* (md:) */
   .header-nav-desktop {
-    @apply hidden md:flex items-center gap-6;
+    display: flex; /* (md:flex) */
+    align-items: center;
+    gap: 1.5rem; /* (gap-6) */
   }
-  .header-nav-link {
-    @apply text-sm font-semibold text-brand-light/90 no-underline transition-all duration-300 hover:opacity-100 hover:text-brand-yellow;
-  }
+}
+
+.header-nav-link {
+  font-size: 0.875rem; /* (text-sm) */
+  font-weight: 600; /* (font-semibold) */
+  color: var(--color-brand-light);
+  opacity: 0.9;
+  text-decoration: none;
+  transition-duration: 300ms;
+}
+.header-nav-link:hover {
+  opacity: 1;
+  color: var(--color-brand-yellow);
+}
+
+/* Кнопка "Гамбургер" (видна только на мобильных) */
+.mobile-menu-button {
+  display: block; /* (block) */
+  color: var(--color-brand-light);
+  padding: 0.5rem; /* (p-2) */
+  border-radius: 0.375rem; /* (rounded-md) */
+  border: 1px solid transparent;
+}
+.mobile-menu-button:hover {
+  background-color: rgba(240, 230, 210, 0.1); /* (hover:bg-brand-light/10) */
+}
+.mobile-menu-button:focus {
+  outline: none;
+  border-color: var(--color-brand-yellow);
+}
+@media (min-width: 768px) { /* (md:) */
   .mobile-menu-button {
-    @apply block md:hidden text-brand-light p-2 rounded-md border border-transparent hover:bg-brand-light/10 focus:outline-none focus:border-brand-yellow;
+    display: none; /* (md:hidden) */
   }
-  .mobile-menu-button svg {
-    @apply w-6 h-6;
-  }
-  .mobile-menu-overlay {
-    @apply hidden absolute top-full left-0 right-0 w-full bg-brand-dark p-6 border-b border-brand-light/10 shadow-xl;
-  }
-  .mobile-menu-overlay.open {
-    @apply block;
-  }
-  .mobile-nav-link {
-    @apply block text-lg font-semibold text-brand-light py-3 border-b border-brand-light/10 no-underline hover:text-brand-yellow;
-  }
-  .mobile-nav-link:last-child {
-    @apply border-b-0;
-  }
+}
+/* SVG иконка внутри кнопки */
+.mobile-menu-button svg {
+  width: 1.5rem; /* (w-6) */
+  height: 1.5rem; /* (h-6) */
+}
+
+/* Выпадающее мобильное меню */
+.mobile-menu-overlay {
+  /* Скрыто по умолчанию */
+  display: none; 
+  
+  /* Позиционирование */
+  position: absolute;
+  top: 100%; /* (Сразу под шапкой) */
+  left: 0;
+  right: 0;
+  width: 100%;
+  
+  /* Стили */
+  background-color: var(--color-brand-dark); /* (bg-brand-dark) */
+  padding: 1.5rem; /* (p-6) */
+  border-bottom: 1px solid rgba(240, 230, 210, 0.1);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.2);
+}
+/* Модификатор .open, который мы будем добавлять через JS */
+.mobile-menu-overlay.open {
+  display: block;
+}
+
+/* Ссылки в мобильном меню */
+.mobile-nav-link {
+  display: block;
+  font-size: 1.125rem; /* (text-lg) */
+  font-weight: 600;
+  color: var(--color-brand-light);
+  padding: 0.75rem 0; /* (py-3) */
+  border-bottom: 1px solid rgba(240, 230, 210, 0.1);
+}
+.mobile-nav-link:hover {
+  color: var(--color-brand-yellow);
+}
+.mobile-nav-link:last-child {
+  border-bottom: none;
 }

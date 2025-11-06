@@ -16,7 +16,7 @@ export default function AboutPage() {
         <div>
           <img 
             src="https://via.placeholder.com/600x600/DAA520/000000?text=Фото+Мастера" 
-            alt="Фото мастера [Имя]" 
+            alt="Фото мастера Надежды" 
             className="about-image"
           />
         </div>
@@ -27,7 +27,7 @@ export default function AboutPage() {
             className="section-title" 
             style={{fontSize: '1.875rem', paddingLeft: '0', borderLeft: 'none'}}
           >
-            Привет! Меня зовут [Имя Мастера].
+            Привет! Меня зовут Надежда.
           </h2>
           
           <p>

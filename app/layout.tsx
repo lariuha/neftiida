@@ -7,8 +7,18 @@ const inter = Inter({ subsets: ["latin"] });
 
 // Добавим мета-теги, это полезно для SEO
 export const metadata: Metadata = {
-  title: "Мастерская [Имя Мастера]",
+  title: "Мастерская N&N",
   description: "Ремонт одежды, мебели и вязание на заказ в Дубоссарах",
+
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+    },
+  },
 };
 
 // Компонент футера.
@@ -19,7 +29,7 @@ function Footer() {
       <div className="footer-content">
         <p className="footer-copyright">
           {/* Динамически получаем текущий год */}
-          © {new Date().getFullYear()} [Имя Мастера]. Все права защищены.
+          © {new Date().getFullYear()} N&N. Все права защищены.
         </p>
         <nav className="footer-links">
           <a href="/">Главная</a>
