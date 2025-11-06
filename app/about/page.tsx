@@ -15,7 +15,7 @@ export default function AboutPage() {
         {/* Колонка 1: Фото */}
         <div>
           <img 
-            src="https://via.placeholder.com/600x600/DAA520/000000?text=Фото+Мастера" 
+            src="/images/master-photo.jpg"
             alt="Фото мастера Надежды" 
             className="about-image"
           />

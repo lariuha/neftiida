@@ -119,7 +119,7 @@ export default function HomePage() {
         <div className="about-content-wrapper">
           <div>
             <img 
-              src="https://via.placeholder.com/600x600/DAA520/000000?text=Фото+Мастера" 
+              src="/images/master-photo.jpg" 
               alt="Фото мастера Надежды" 
               className="about-image"
             />
