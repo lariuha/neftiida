@@ -1,6 +1,3 @@
-/* app/globals.css */
-
-/* === НАШ РУЧНОЙ СБРОС (вместо @tailwind base) === */
 *,
 *::before,
 *::after {
@@ -9,12 +6,10 @@
 
 html,
 body {
-  margin: 0; /* Убираем дефолтные отступы */
-  padding: 0; /* На всякий случай */
+  margin: 0;
+  padding: 0;
 }
-/* === Конец ручного сброса === */
 
-/* 1. Определяем наши CSS переменные */
 :root {
   --color-brand-dark: #1e1a2a;
   --color-brand-blue: #00314a;
@@ -25,103 +20,98 @@ body {
   --color-brand-light: #f0e6d2;
 }
 
-/* 3. Подключаем Tailwind (базовые стили - сброс и т.д.) */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* 2. Применяем наш фоновый цвет к body */
 body {
-  background-color: var(--color-brand-blue);
+  background-color: var(--color-brand-red);
+  background-image: radial-gradient(
+    ellipse at center, 
+    var(--color-brand-red) 0%, 
+    var(--color-brand-dark) 100%
+  );
 }
 
-
-/* 4. НАШИ КЛАССЫ НА ЧИСТОМ CSS (ВМЕСТО @apply) */
-
-/* --- Кнопки --- */
 .btn-primary {
   background-color: var(--color-brand-yellow);
   color: var(--color-brand-dark);
-  font-weight: 700; /* (font-bold) */
-  padding-top: 0.75rem; /* (py-3) */
-  padding-bottom: 0.75rem; /* (py-3) */
-  padding-left: 1.5rem; /* (px-6) */
-  padding-right: 1.5rem; /* (px-6) */
-  border-radius: 0.5rem; /* (rounded-lg) */
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /* (shadow-lg) */
-  transition-property: transform; /* (transition-transform) */
-  transition-duration: 300ms; /* (duration-300) */
-  display: inline-block; /* (для тега <a>) */
+  font-weight: 700;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  transition-property: transform;
+  transition-duration: 300ms;
+  display: inline-block;
+  text-decoration: none;
 }
 .btn-primary:hover {
-  transform: scale(1.05); /* (hover:scale-105) */
+  transform: scale(1.05);
 }
 
 .btn-secondary {
   background-color: var(--color-brand-terracotta);
   color: white;
-  font-weight: 700; /* (font-bold) */
-  padding-top: 0.75rem; /* (py-3) */
-  padding-bottom: 0.75rem; /* (py-3) */
-  padding-left: 1.5rem; /* (px-6) */
-  padding-right: 1.5rem; /* (px-6) */
-  border-radius: 0.5rem; /* (rounded-lg) */
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /* (shadow-lg) */
-  transition-property: transform; /* (transition-transform) */
-  transition-duration: 300ms; /* (duration-300) */
-  display: inline-block; /* (для тега <a>) */
+  font-weight: 700;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  transition-property: transform;
+  transition-duration: 300ms;
+  display: inline-block;
+  text-decoration: none;
 }
 .btn-secondary:hover {
-  transform: scale(1.05); /* (hover:scale-105) */
+  transform: scale(1.05);
 }
 
-/* --- Текст (для темного фона) --- */
 .heading-hero {
   color: var(--color-brand-light);
-  font-size: 2.25rem; /* (text-4xl) */
-  line-height: 2.5rem; /* (text-4xl) */
-  font-weight: 800; /* (font-extrabold) */
-  margin-bottom: 1rem; /* (mb-4) */
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
 }
-@media (min-width: 768px) { /* (md:) */
+@media (min-width: 768px) { 
   .heading-hero {
-    font-size: 3rem; /* (md:text-5xl) */
-    line-height: 1; /* (md:text-5xl) */
+    font-size: 3rem;
+    line-height: 1;
   }
 }
 
 .subheading-hero {
   color: var(--color-brand-light);
-  font-size: 1.125rem; /* (text-lg) */
-  line-height: 1.75rem; /* (text-lg) */
-  opacity: 0.9; /* (opacity-90) */
-  margin-bottom: 2.5rem; /* (mb-10 из page.tsx) */
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  opacity: 0.9;
+  margin-bottom: 2.5rem;
 }
-@media (min-width: 768px) { /* (md:) */
+@media (min-width: 768px) {
   .subheading-hero {
-    font-size: 1.25rem; /* (md:text-xl) */
-    line-height: 1.75rem; /* (md:text-xl) */
+    font-size: 1.25rem;
+    line-height: 1.75rem;
   }
 
 }  
 
   .service-card {
-    /* Мы используем наш 'brand-dark', но полупрозрачный */
-    background-color: rgba(30, 26, 42, 0.7); /* 70%-прозрачный brand-dark */
-    border-radius: 0.5rem; /* (rounded-lg) */
+    background-color: rgba(90, 43, 42, 0.7);
+    border: 1px solid rgba(240, 230, 210, 0.2);
+    border-radius: 0.5rem;
     padding: 2rem; /* (p-8) */
-    border: 1px solid rgba(240, 230, 210, 0.1); /* (border brand-light/10) */
+    border: 1px solid rgba(240, 230, 210, 0.1);
     transition-property: all;
     transition-duration: 300ms;
     text-align: left;
-    height: 100%; /* (h-full) - чтобы карточки были одной высоты */
-  }
-  .service-card:hover {
-    transform: translateY(-5px); /* (hover:-translate-y-1) */
-    border-color: rgba(240, 230, 210, 0.3); /* (hover:border brand-light/30) */
+    height: 100%;
   }
 
-  /* Заголовок в карточке */
   .card-title {
     color: var(--color-brand-light); /* (text-brand-light) */
     font-size: 1.5rem; /* (text-2xl) */
@@ -159,7 +149,7 @@ body {
 }
 .portfolio-filter-btn:hover {
   opacity: 1;
-  background-color: rgba(240, 230, 210, 0.1); /* (brand-light/10) */
+  background-color: rgba(240, 230, 210, 0.15); /* (brand-light/10) */
 }
 /* Активная кнопка-фильтр (мы будем использовать ее позже с React) */
 .portfolio-filter-btn.active {
@@ -171,7 +161,8 @@ body {
 
 /* Карточка портфолио */
 .portfolio-item {
-  background-color: rgba(30, 26, 42, 0.7); /* (brand-dark/70) */
+  /*background-color: rgba(30, 26, 42, 0.7); /* (brand-dark/70) */
+  background-color: rgba(90, 43, 42, 0.7); /* ТЕМНЫЙ БОРДОВЫЙ/КОРИЧНЕВЫЙ для карточек (5a2b2a, brand-maroon) */
   border-radius: 0.5rem; /* (rounded-lg) */
   overflow: hidden; /* (чтобы картинка не вылезала) */
   border: 1px solid rgba(240, 230, 210, 0.1); /* (border brand-light/10) */
@@ -182,15 +173,20 @@ body {
   position: relative;
   width: 100%;
   /* Мы делаем картинки квадратными (aspect-square) */
-  padding-top: 100%; /* 1:1 Aspect Ratio */
+  padding-top: 133.33%;
 }
-.portfolio-image-wrapper img {
+.portfolio-image-knitting {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* (Картинка заполнит блок, обрезаясь) */
+  object-fit: cover;
+
+  /* Отступы 12px (0.75rem) */
+  top: 0.75rem;
+  left: 0.75rem;
+  width: calc(100% - 1.5rem);  /* Ширина минус 2 отступа */
+  height: calc(100% - 1.5rem); /* Высота минус 2 отступа */
+
+  /* Скругление 8px (0.5rem) */
+  border-radius: 0.5rem; 
 }
 
 /* Лейбл "До" / "После" */
@@ -213,6 +209,7 @@ body {
   padding-top: 1rem; /* (pt-4) */
   padding-left: 1.25rem; /* (px-5) */
   padding-right: 1.25rem; /* (px-5) */
+  margin: 0;
 }
 .portfolio-item-description {
   color: var(--color-brand-light);
@@ -221,15 +218,11 @@ body {
   padding-bottom: 1.25rem; /* (pb-5) */
   padding-left: 1.25rem; /* (px-5) */
   padding-right: 1.25rem; /* (px-5) */
+  margin: 0;
 }
 
 .about-section {
-  background-color: rgba(30, 26, 42, 0.7); /* (brand-dark/70) */
   width: 100%;
-  padding-top: 4rem;    /* (py-16) */
-  padding-bottom: 4rem; /* (py-16) */
-  padding-left: 1.5rem;  /* (px-6) */
-  padding-right: 1.5rem; /* (px-6) */
 }
 
 /* Контейнер для фото и текста */
@@ -251,7 +244,7 @@ body {
 /* Фотография мастера */
 .about-image {
   width: 100%;
-  height: 24rem; /* (h-96) */
+  /* height: 24rem; (h-96) */
   object-fit: cover;
   border-radius: 0.5rem; /* (rounded-lg) */
   border: 2px solid var(--color-brand-yellow); /* Рамка в цвет акцента */
@@ -277,11 +270,6 @@ body {
 }
 
 .cta-section {
-  width: 100%;
-  padding-top: 4rem;    /* (py-16) */
-  padding-bottom: 5rem; /* (pb-20) */
-  padding-left: 1.5rem;  /* (px-6) */
-  padding-right: 1.5rem; /* (px-6) */
   text-align: center; /* (text-center) */
 }
 
@@ -346,6 +334,7 @@ body {
   color: var(--color-brand-light);
   opacity: 0.8;
   transition-duration: 300ms;
+  text-decoration: none;
 }
 .footer-links a:hover {
   opacity: 1;
@@ -380,8 +369,10 @@ body {
 /* Стили для полей ввода (input, textarea) */
 .form-input {
   width: 100%;
-  background-color: rgba(30, 26, 42, 0.7); /* (bg-brand-dark/70) */
-  border: 1px solid rgba(240, 230, 210, 0.2); /* (border-brand-light/20) */
+  /*background-color: rgba(30, 26, 42, 0.7); /* (bg-brand-dark/70) */
+  /*border: 1px solid rgba(240, 230, 210, 0.2); /* (border-brand-light/20) */
+  background-color: rgba(30, 26, 42, 0.8); /* Фон инпутов чуть светлее, чем brand-dark, чтобы было видно на бордовом */
+  border: 1px solid rgba(240, 230, 210, 0.3); /* Ярче обводка */
   color: var(--color-brand-light);
   border-radius: 0.375rem; /* (rounded-md) */
   padding: 0.75rem 1rem; /* (py-3 px-4) */
@@ -437,8 +428,8 @@ body {
   text-align: left;
   padding: 2.5rem 1.5rem; /* (py-10 px-6) */
   margin-bottom: 2rem; /* (mb-8) */
-  background-color: rgba(30, 26, 42, 0.7); /* (bg-brand-dark/70) */
-  border: 1px solid rgba(240, 230, 210, 0.1); /* (border brand-light/10) */
+  background-color: rgba(90, 43, 42, 0.7); /* ТЕМНЫЙ БОРДОВЫЙ/КОРИЧНЕВЫЙ для секций услуг */
+  border: 1px solid rgba(240, 230, 210, 0.15); /* Чуть заметнее обводка */
   border-radius: 0.5rem; /* (rounded-lg) */
 }
 
@@ -496,7 +487,13 @@ body {
   font-size: 1.25rem; /* (text-xl) */
   font-weight: 600;
   margin-bottom: 1rem; /* (mb-4) */
-  margin-top: 1.5rem; /* (mt-6) */
+  margin-top: 2.5rem; /* (mt-6) */
+}
+
+.process-steps-work h3{
+  color: var(--color-brand-light);
+  font-size: 1.25rem; /* (text-xl) */
+  font-weight: 600;
 }
 
 .header-wrapper {
@@ -504,11 +501,9 @@ body {
   top: 0;
   z-index: 50; /* (Чтобы он был поверх всего) */
   width: 100%;
-  
-  /* Эффект "матового стекла" (бэкграунд с прозрачностью + блюр) */
-  background-color: rgba(30, 26, 42, 0.85); /* (brand-dark/85) */
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px); /* (Для Safari) */
+  background-color: rgba(30, 26, 42, 0.9); /* Хедер очень темный, почти черный */
+  backdrop-filter: blur(10px); /* Чуть сильнее блюр */
+  -webkit-backdrop-filter: blur(10px);
   
   border-bottom: 1px solid rgba(240, 230, 210, 0.1); /* (border brand-light/10) */
 }
@@ -522,7 +517,7 @@ body {
   align-items: center;
   justify-content: space-between;
   
-  padding: 1rem 1.5rem; /* (py-4 px-6) */
+  padding: 1rem 1rem; /* (py-4 px-6) */
 }
 
 /* Логотип (название сайта) */
@@ -531,6 +526,10 @@ body {
   font-weight: 700; /* (font-bold) */
   color: var(--color-brand-yellow); /* (text-brand-yellow) */
   text-decoration: none;
+
+  display: flex;         /* Включаем Flexbox */
+  align-items: center;   /* Выравниваем по вертикали */
+  gap: 0.75rem;
 }
 
 /* Навигация для десктопа (скрыта на мобильных) */
@@ -621,4 +620,224 @@ body {
 }
 .mobile-nav-link:last-child {
   border-bottom: none;
+}
+
+
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Центрируем контент */
+  min-height: 60vh; /* Уменьшаем высоту (было 100vh) */
+  width: 100%;
+  padding: 4rem 1.5rem; /* (p-6) + отступы */
+  text-align: center;
+  max-width: 72rem;
+  /* Фон и градиент УБРАНЫ (теперь он на body) */
+}
+
+.hero-card-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* 1 колонка по умолчанию (мобильные) */
+  gap: 2rem; /* (gap-8) */
+}
+
+@media (min-width: 768px) { /* (md:) */
+  .hero-card-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 колонки на десктопе */
+  }
+}
+
+.content-section {
+  width: 100%;
+  max-width: 72rem;  /* (max-w-6xl) */
+  margin-left: auto;
+  margin-right: auto;
+  padding: 3rem 1.5rem; /* (py-12 px-6) */
+  margin-bottom: 2rem; /* Отступ между секциями */
+
+  /* ДОБАВЛЯЕМ СТИЛЬ "КАРТОЧКИ" */
+  background-color: rgba(90, 43, 42, 0.7); /* (brand-maroon/70) */
+  border-radius: 0.5rem; /* (rounded-lg) */
+  border: 1px solid rgba(240, 230, 210, 0.15);
+}
+
+
+.header-nav-link-active {
+  color: var(--color-brand-yellow);
+  opacity: 1;
+}
+
+.mobile-nav-link-active {
+  color: var(--color-brand-yellow);
+}
+
+/* Стили для текстовых ссылок (Телефон, Email) */
+.contact-list-item {
+  background-color: rgba(90, 43, 42, 0.7); /* (brand-maroon/70) */
+  border: 1px solid rgba(240, 230, 210, 0.15);
+  border-radius: 0.5rem;
+  padding: 1rem 1.5rem;
+  text-decoration: none;
+  transition-duration: 300ms;
+  display: block; /* Делаем блочным элементом */
+  max-width: 42rem;
+  width: 100%;
+  margin: 0 auto 1rem auto; /* (mb-4) */
+  text-align: center;
+}
+.contact-list-item:hover {
+  border-color: var(--color-brand-yellow);
+}
+.contact-list-item-title {
+  display: block;
+  color: var(--color-brand-light);
+  font-size: 0.875rem; /* (text-sm) */
+  opacity: 0.7;
+  margin-bottom: 1rem;
+}
+.contact-list-item-value {
+  display: block;
+  color: var(--color-brand-light);
+  font-size: 1.125rem; /* (text-lg) */
+  font-weight: 600; /* (font-semibold) */
+}
+
+/* Добавляем цвета для .social-btn (класс .contact-links-grid у нас уже есть) */
+.social-btn-telegram {
+  background-color: #26A5E4; /* Цвет Telegram */
+  text-decoration: none; /* Убираем подчеркивание */
+}
+.social-btn-instagram {
+  /* Градиент Instagram */
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  text-decoration: none; /* Убираем подчеркивание */
+}
+.social-btn-vk {
+  background-color: #0077FF; /* Цвет VK */
+  text-decoration: none; /* Убираем подчеркивание */
+}
+
+.form-grid-container {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr)); /* grid-cols-1 */
+  gap: 1.5rem; /* gap-6 (24px) */
+}
+@media (min-width: 640px) { /* sm: */
+  .form-grid-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* sm:grid-cols-2 */
+  }
+}
+
+/* Этот класс заменит "sm:col-span-2" */
+.form-grid-item-full {
+  /* По умолчанию ничего не делает */
+}
+@media (min-width: 640px) { /* sm: */
+  .form-grid-item-full {
+    grid-column: span 2 / span 2; /* sm:col-span-2 */
+  }
+}
+
+/* Этот класс заменит "block text-sm font-medium text-white mb-1" */
+.form-label {
+  display: block;
+  font-size: 0.875rem; /* text-sm */
+  line-height: 1.25rem; /* text-sm */
+  font-weight: 500; /* font-medium */
+  color: var(--color-brand-light);
+  margin-bottom: 0.25rem; /* mb-1 */
+}
+
+.list-steps {
+  list-style-type: decimal;   /* (list-decimal) */
+  list-style-position: inside;  /* (list-inside) */
+  color: var(--color-brand-light); /* (text-brand-light) */
+  opacity: 0.8;                 /* (/80) */
+}
+
+/* Добавляем отступы (space-y-2) вручную */
+.list-steps li {
+  margin-bottom: 0.5rem; /* (space-y-2) */
+}
+
+/* Делаем тег <strong> внутри списка ярче */
+.list-steps li strong {
+  opacity: 1;
+  color: var(--color-brand-light);
+  font-weight: 600; /* (font-semibold) */
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* 1 колонка (мобильные) */
+  gap: 1.5rem; /* (gap-6) 24px */
+}
+
+@media (min-width: 768px) { /* (md:) */
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 колонки (планшеты) */
+  }
+}
+
+@media (min-width: 1024px) { /* (lg:) */
+  .portfolio-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 колонки (десктоп) */
+  }
+}
+
+/* Для сообщения "Ничего не найдено" */
+.portfolio-grid-empty {
+  color: var(--color-brand-light);
+  opacity: 0.7;
+  text-align: center;
+}
+@media (min-width: 768px) { /* (md:) */
+  .portfolio-grid-empty {
+    grid-column: span 2 / span 2; /* md:col-span-2 */
+  }
+}
+@media (min-width: 1024px) { /* (lg:) */
+  .portfolio-grid-empty {
+    grid-column: span 3 / span 3; /* lg:col-span-3 */
+  }
+}
+
+.portfolio-filter {
+  display: flex;
+  justify-content: center;
+  gap: 1rem; /* (16px) */
+  margin-bottom: 2rem; /* (32px) */
+}
+
+.portfolio-view-all {
+  text-align: center;
+  margin-top: 2rem; /* (32px) */
+}
+
+.portfolio-filter-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.portfolio-filter-btn {
+  background-color: transparent;
+  color: var(--color-brand-light);
+  opacity: 0.6;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  border: 1px solid var(--color-brand-light);
+  transition-duration: 300ms;
+}
+.portfolio-filter-btn:hover {
+  opacity: 1;
+  background-color: rgba(240, 230, 210, 0.1);
+}
+.portfolio-filter-btn.active {
+  background-color: var(--color-brand-yellow);
+  color: var(--color-brand-dark);
+  border-color: var(--color-brand-yellow);
+  opacity: 1;
 }

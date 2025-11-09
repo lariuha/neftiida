@@ -5,9 +5,8 @@ import Header from "@/app/components/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
-// Добавим мета-теги, это полезно для SEO
 export const metadata: Metadata = {
-  title: "Мастерская N&N",
+  title: "N&N",
   description: "Ремонт одежды, мебели и вязание на заказ в Дубоссарах",
 
   robots: {
@@ -21,14 +20,12 @@ export const metadata: Metadata = {
   },
 };
 
-// Компонент футера.
-// (Этот код у вас уже есть, он правильный)
+
 function Footer() {
   return (
     <footer className="footer-wrapper">
       <div className="footer-content">
         <p className="footer-copyright">
-          {/* Динамически получаем текущий год */}
           © {new Date().getFullYear()} N&N. Все права защищены.
         </p>
         <nav className="footer-links">
@@ -36,9 +33,9 @@ function Footer() {
           <a href="/services">Услуги</a>
           <a href="/portfolio">Портфолио</a>
           <a href="/contact">Контакты</a>
-          {/* Обязательно замените # на ваши реальные ссылки */}
-          <a href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
-          <a href="#" target="_blank" rel="noopener noreferrer">Telegram</a>
+          <a href="https://www.instagram.com/neftiida_handmade.md" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://t.me/+37369697829" target="_blank" rel="noopener noreferrer">Telegram</a>
+          <a href="https://vk.com/neftiida" target="_blank" rel="noopener noreferrer">ВКонтакте</a>
         </nav>
       </div>
     </footer>

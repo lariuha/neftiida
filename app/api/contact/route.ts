@@ -1,4 +1,3 @@
-// app/api/contact/route.ts
 import { Resend } from 'resend';
 
 // Инициализируем Resend с нашим API-ключом
