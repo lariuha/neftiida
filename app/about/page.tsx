@@ -12,7 +12,7 @@ export default function AboutPage() {
         className="service-card" 
         style={{maxWidth: '64rem', width: '100%', margin: '2rem auto 0 auto'}}
       >
-        <div className="about-content-wrapper" style={{alignItems: 'flex-start'}}>
+        <div className="about-content-wrapper">
           
           {/* Колонка 1: Фото */}
           <div>
@@ -27,7 +27,8 @@ export default function AboutPage() {
           <div className="about-text-content">
             <h2 
               className="section-title">
-              Привет! Меня зовут Надежда.
+              Привет!<br/>
+              Меня зовут Надежда.
             </h2>
             
             <p>

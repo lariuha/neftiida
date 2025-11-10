@@ -657,9 +657,9 @@ body {
   margin-bottom: 2rem; /* Отступ между секциями */
 
   /* ДОБАВЛЯЕМ СТИЛЬ "КАРТОЧКИ" */
-  background-color: rgba(90, 43, 42, 0.7); /* (brand-maroon/70) */
-  border-radius: 0.5rem; /* (rounded-lg) */
-  border: 1px solid rgba(240, 230, 210, 0.15);
+  /*background-color: rgba(90, 43, 42, 0.7); /* (brand-maroon/70) */
+  /*border-radius: 0.5rem; /* (rounded-lg) */
+  /*border: 1px solid rgba(240, 230, 210, 0.15);*/
 }
 
 
@@ -840,4 +840,30 @@ body {
   color: var(--color-brand-dark);
   border-color: var(--color-brand-yellow);
   opacity: 1;
+}
+
+.homepage-service-list {
+  list-style-type: none; /* Убираем маркеры */
+  padding: 0;
+  margin: 2rem 0; /* Отступы сверху и снизу */
+  text-align: center;
+}
+
+.homepage-service-list li {
+  color: var(--color-brand-light);
+  opacity: 0.9;
+  font-size: 1.125rem; /* (text-lg) */
+  font-weight: 500; /* (font-medium) */
+  margin-bottom: 0.75rem; /* (12px) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* "Галочка" перед пунктом */
+.homepage-service-list li::before {
+  content: '✓'; /* Галочка */
+  color: var(--color-brand-yellow); /* Золотой цвет */
+  font-weight: 700;
+  margin-right: 0.75rem; /* (mr-3) */
 }

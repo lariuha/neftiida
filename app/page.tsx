@@ -2,7 +2,7 @@ import { portfolioItems } from '@/app/data/portfolio-data';
 
 export default function HomePage() {
 
-  const featuredWorks = portfolioItems.slice(0, 3);
+  const featuredWorks = portfolioItems.slice(0, 6);
 
   return (
     <>
@@ -39,6 +39,28 @@ export default function HomePage() {
               </a>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="content-section">
+        <h2 className="section-title">
+          Ремонт и реставрация:
+        </h2>
+
+        <ul className="homepage-service-list">
+          <li>ремонт и подгонка одежды</li>
+          <li>джинсы, брюки, спортивная одежда</li>
+          <li>верхняя одежда</li>
+          <li>мебель</li>
+          <li>автомобильные сиденья</li>
+          <li>дополнительные услуги</li>
+        </ul>
+
+        {/* Кнопка "смотреть подробнее" */}
+        <div style={{textAlign: 'center'}}>
+          <a href="/services" className="btn-secondary">
+            Смотреть подробнее
+          </a>
         </div>
       </section>
 
@@ -90,43 +112,47 @@ export default function HomePage() {
       </section>
 
       <section className="content-section about-section">
-        <div className="about-content-wrapper">
-          <div>
-            <img 
-              src="/images/master-photo.jpg" 
-              alt="Фото мастера Надежды" 
-              className="about-image"
-            />
+        <div className="service-card" style={{maxWidth: '64rem', margin: '0 auto'}}>
+          <div className="about-content-wrapper">
+            <div>
+              <img 
+                src="/images/master-photo.jpg" 
+                alt="Фото мастера Надежды" 
+                className="about-image"
+              />
+            </div>
+            <div className="about-text-content">
+              <h2 className="section-title" style={{textAlign: 'left'}}>
+                Привет, я Надя
+              </h2>
+              <p>
+                Моя страсть — дарить вещам вторую жизнь и создавать уют с нуля...
+              </p>
+              <p>
+                А в свободное время я полностью погружаюсь в творчество...
+              </p>
+              <a href="/about" className="btn-secondary py-2 px-5 text-sm">
+                Узнать мою историю
+              </a>
+            </div>
           </div>
-          <div className="about-text-content">
-            <h2 className="section-title" style={{textAlign: 'left'}}>
-              Привет, я Надя
-            </h2>
-            <p>
-              Моя страсть — дарить вещам вторую жизнь и создавать уют с нуля...
-            </p>
-            <p>
-              А в свободное время я полностью погружаюсь в творчество...
-            </p>
-            <a href="/about" className="btn-secondary py-2 px-5 text-sm">
-              Узнать мою историю
-            </a>
-          </div>
-        </div>
+        </div>  
       </section>
 
       <section className="content-section cta-section">
-        <div className="cta-content-wrapper">
-          <h2 className="section-title">
-            Готовы обсудить ваш проект?
-          </h2>
-          <p className="cta-text">
-            Свяжитесь со мной, и мы обсудим детали...
-          </p>
-          <a href="/contact" className="btn-primary">
-            Рассчитать мой проект
-          </a>
-        </div>
+        <div className="service-card" style={{maxWidth: '42rem', margin: '0 auto'}}>
+          <div className="cta-content-wrapper">
+            <h2 className="section-title">
+              Готовы обсудить ваш проект?
+            </h2>
+            <p className="cta-text">
+              Свяжитесь со мной, и мы обсудим детали...
+            </p>
+            <a href="/contact" className="btn-primary">
+              Рассчитать мой проект
+            </a>
+          </div>
+        </div>  
       </section>
     </>
   );
